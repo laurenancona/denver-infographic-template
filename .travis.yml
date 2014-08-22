@@ -1,8 +1,10 @@
 language: ruby
+exclude: [vendor]
 rvm:
 - 2.1
-script: script/cibuild
-exclude: [vendor]
+before_script:
+ - chmod +x ./script
+script: bundle exec jekyll build && bundle exec htmlproof ./_site
 env:
   global:
   - NOKOGIRI_USE_SYSTEM_LIBRARIES=true # speeds up installation of html-proofer
